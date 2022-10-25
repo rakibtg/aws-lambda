@@ -6,10 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "node deploy",
-    "MetaTagFinder": "node ./MetaTagFinder/run.js",
-    "watch:MetaTagFinder": "nodemon ./MetaTagFinder/run.js",
-    "AddToQueue": "node ./AddToQueue/run.js",
-    "watch:AddToQueue": "nodemon ./AddToQueue/run.js"
+    "MetaTagFinder": "node ./functions/MetaTagFinder/run.js",
+    "watch:MetaTagFinder": "nodemon ./functions/MetaTagFinder/run.js",
+    "AddToQueue": "node ./functions/AddToQueue/run.js",
+    "watch:AddToQueue": "nodemon ./functions/AddToQueue/run.js"
   },
   "keywords": [],
   "author": "",
