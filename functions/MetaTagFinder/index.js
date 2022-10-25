@@ -25,9 +25,9 @@ exports.handler = async (event) => {
   await Promise.all(
     Records.map((record) => {
       const { body } = record;
+      console.log(body);
       const { email, url } = JSON.parse(body);
-      console.log(email);
-      console.log(url);
+      console.log({ email, url });
     })
   );
 
