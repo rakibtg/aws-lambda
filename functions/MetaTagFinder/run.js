@@ -3,26 +3,26 @@ console.clear();
 const MetaTagFinder = require("./index");
 
 const body = JSON.stringify({
-  url: "https://dev.to/afrazkhan/how-to-setup-aws-lambda-layers-nodejs-182",
-  email: "rakibtg@gmail.com",
+  url: "https://example.com/article/article-title",
+  email: "user@example.com",
 });
 
 const SQS_PAYLOAD = {
   Records: [
     {
-      messageId: "19dd0b57-b21e-4ac1-bd88-01bbb068cb78",
+      messageId: "000000000-0000-0000-0000-000000000",
       receiptHandle: "MessageReceiptHandle",
       body,
       attributes: {
         ApproximateReceiveCount: "1",
-        SentTimestamp: "1523232000000",
-        SenderId: "123456789012",
-        ApproximateFirstReceiveTimestamp: "1523232000001",
+        SentTimestamp: "000000000000",
+        SenderId: "000000000000",
+        ApproximateFirstReceiveTimestamp: "000000000000",
       },
       messageAttributes: {},
       md5OfBody: "{{{md5_of_body}}}",
       eventSource: "aws:sqs",
-      eventSourceARN: "arn:aws:sqs:us-east-1:123456789012:MyQueue",
+      eventSourceARN: "arn:aws:sqs:us-east-1:000000000000:MyQueue",
       awsRegion: "us-east-1",
     },
   ],
