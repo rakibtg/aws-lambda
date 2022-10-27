@@ -1,11 +1,22 @@
+const AdmZip = require("adm-zip");
 const child_process = require("child_process");
 const { argv } = require("process");
 
-const FUNCTION_NAME = "MetaTagFinder";
 const BUCKET_NAME = "lambda-websitemetatagsgenerator";
+const [, , FUNCTION_NAME] = argv;
+console.log("Deploying:", FUNCTION_NAME);
 
-const [, , DEPLOY_TARGET] = argv;
-console.log("Deploying:", DEPLOY_TARGET);
+const CreateArchive = (functionName) => {
+  return new Promise((res) => {
+    const zip = new AdmZip();
+    zip.addLocalFile(`./functions/${functionName}/index.js`);
+    zip.addLocalFolder(`./functions/${functionName}/utils`, "utils");
+    zip.writeZip("./functions.zip");
+    setTimeout(() => {
+      res();
+    }, 2000);
+  });
+};
 
 const Terminal = (command) => {
   return new Promise((resolve, reject) => {
@@ -21,10 +32,8 @@ const Terminal = (command) => {
 };
 
 const Deploy = async () => {
-  console.info("⌛ Compressing code");
-  await Terminal(
-    `powershell "Compress-Archive .\\functions\\${DEPLOY_TARGET}\\index.js functions.zip"`
-  );
+  console.info("⌛ Compressing function and it's utilities");
+  await CreateArchive(FUNCTION_NAME);
   console.info("⌛ Uploading code to AWS");
   await Terminal(`aws s3 cp ./functions.zip s3://${BUCKET_NAME}`);
   await Terminal("rm ./functions.zip");
