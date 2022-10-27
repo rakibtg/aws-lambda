@@ -1,21 +1,4 @@
-const { extractMetadata } = require("link-meta-extractor");
-
-async function extractMeta(url) {
-  const metaInformation = await extractMetadata(url);
-
-  return metaInformation;
-}
-
-async function handleRequest({ email, url }) {
-  const metaTags = await extractMeta(url);
-
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify(metaTags),
-  };
-
-  return response;
-}
+const S3_BUCKET = "metatagsemailattachments";
 
 exports.handler = async (event) => {
   const { Records } = event;
