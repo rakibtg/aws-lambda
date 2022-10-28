@@ -2,7 +2,7 @@ const AWS = require("aws-sdk");
 AWS.config.update({ region: "eu-north-1" });
 
 const PreSignObject = async ({ fileName, expires, bucketName }) => {
-  return Promise((res, rej) => {
+  return new Promise((res, rej) => {
     const s3 = new AWS.S3({
       apiVersion: "2006-03-01",
       region: "eu-north-1",
